@@ -15,12 +15,15 @@ casper.thenOpen(welcomePageURL, function () {
 });
 
 casper.then(function fill_in() {
+
     this.fill('form[name="loginForm"]', {
         'login': 'john.doe',
         'password': 'foobar'
     });
     this.click('button[type="submit"]');
-    phantomcss.screenshot('body', 'whole home page');
+    this.wait(5000, function () {
+        phantomcss.screenshot({top: 0, left: 0, width: 1024, height: 700}, 'whole home page');
+    });
 });
 
 casper.then(function now_check_the_screenshots() {
